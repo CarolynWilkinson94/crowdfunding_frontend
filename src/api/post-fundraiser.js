@@ -1,4 +1,4 @@
-async function postFundraiser(title, owner, description, image, target, is_open, date) {
+async function postFundraiser(title, owner, description, image, goal, is_open, date) {
     const url = `${import.meta.env.VITE_API_URL}/fundraisers/`;
     const token = window.localStorage.getItem("token");
 

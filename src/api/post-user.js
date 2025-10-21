@@ -1,4 +1,4 @@
-async function postUser(username, password, firstName, lastName, email) {
+async function postUser(username, password, email) {
     const url = `${import.meta.env.VITE_API_URL}/users/`;
     const response = await fetch(url, {
         method: "POST",
@@ -8,8 +8,8 @@ async function postUser(username, password, firstName, lastName, email) {
         body: JSON.stringify({
             "username": username,
             "password": password,
-            "firstName": firstName,
-            "lastName": lastName,
+            // "firstName": firstName,
+            // "lastName": lastName,
             "email": email
         }), 
     });

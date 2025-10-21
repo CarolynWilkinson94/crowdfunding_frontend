@@ -6,11 +6,11 @@ function SignUpPage() {
     const navigate = useNavigate();
     const [form, setForm] = useState ({
         username: "",
-        firstName: "",
-        lastName: "",
+        // firstName: "",
+        // lastName: "",
         email: "",
         password: "",
-        confirmPassword: "",
+        // confirmPassword: "",
 
     });
     const [loading, setLoading] = useState(false);
@@ -22,9 +22,9 @@ function SignUpPage() {
 
     function validate() {
         if (!form.username.trim()) return "Please enter a username.";
-        if (!form.email.match(/^\S+@\S+\.S+$/)) return "Please enter a valid email.";
+        if (!form.email.match(/^\S+@\S+\.\S+$/)) return "Please enter a valid email.";
         if (form.password.length < 8) return "Password must be at least 8 characters.";
-        if (form.password !== form.confirmPassword) return "Passwords do not match.";
+        // if (form.password !== form.confirmPassword) return "Passwords do not match.";
         return null;
     }
 
@@ -38,11 +38,11 @@ function SignUpPage() {
         }
         setLoading(true);
         try{
-            const data = await postUser({
-                username: form.username,
-                email: form.email,
-                password: form.password
-            });
+            const data = await postUser(
+                form.username,
+                form.password,
+                form.email,
+            );
             navigate("/");
         } catch (err) {
             setError(err.info?.message ?? err.message ?? "Signup failed");
@@ -61,7 +61,7 @@ function SignUpPage() {
                     <label htmlFor="username">Username</label>
                     <input id="username" name="username" type="text" required value={form.username} onChange={onChange}/>
                 </div>
-
+{/* 
                 <div>
                     <label htmlFor="firstName">First Name</label>
                     <input id="firstName" name="firstName" type="text" required value={form.firstName} onChange={onChange}/>
@@ -70,7 +70,7 @@ function SignUpPage() {
                 <div>
                     <label htmlFor="lastName">Last Name</label>
                     <input id="lastName" name="lastName" type="text" required value={form.lastName} onChange={onChange} />
-                </div>
+                </div> */}
 
                 <div>
                     <label htmlFor="email">Email</label>
@@ -82,11 +82,11 @@ function SignUpPage() {
                     <input id="password" name="password" type="password" required minLength="8" value={form.password} onChange={onChange}/>
                 </div>
 
-                <div>
+                {/* <div>
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input id="confirmPassword" name="confirmPassword" type="password" required minLength="8" value={form.confirmPassword} onChange={onChange}/>
 
-                </div>
+                </div> */}
 
                 {error && (
                     <div id="signup-error" role="alert" aria-live="polite" style={{ color: "crimson" }}>
