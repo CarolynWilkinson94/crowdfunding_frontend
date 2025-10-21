@@ -1,7 +1,7 @@
 nav {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
-    background-color: black;
+    background-color: #33658A;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -15,6 +15,11 @@ nav {
 
 }
 
+.nav-logo {
+    display: flex;
+    justify-content: center;
+}
+
 nav a {
     color:white;
     text-decoration: none;
@@ -24,3 +29,4 @@ nav a {
 nav a:hover {
     color: darkolivegreen;
 }
+
