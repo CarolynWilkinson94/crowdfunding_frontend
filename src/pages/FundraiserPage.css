@@ -1,0 +1,64 @@
+.fundraiser-image {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+.fundraiser-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.goal-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.edit-button:active {
+    background-color: #004085;
+}
+
+.fundraiser-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+    background-color: #bd2130;
+}
+
+.delete-button:active {
+    background-color: #a71d2a;
+}

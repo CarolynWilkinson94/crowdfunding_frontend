@@ -4,6 +4,7 @@ import "./HomePage.css";
 
 
 function HomePage() {
+    console.log('Homepage rendering');      
     const { fundraisers, isLoading, error } = useFundraisers();
 
     if (isLoading) {
@@ -16,8 +17,8 @@ function HomePage() {
 
     return (
         <div id="fundraiser-list">
-            {fundraisers.map((fundraiserData, key) => {
-                return <FundraiserCard key={key} fundraiserData={fundraiserData} />;
+            {fundraisers?.map((fundraiserData, key) => {
+                return <FundraiserCard key={fundraiserData.id || key} fundraiserData={fundraiserData} />;
 
             })}
         </div>

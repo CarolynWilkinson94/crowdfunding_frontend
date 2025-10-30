@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import getFundraiser from "../api/get-fundraiser";
 
 export default function useFundraiser(fundraiserId) {
@@ -6,17 +6,22 @@ export default function useFundraiser(fundraiserId) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
 
-    useEffect(() => {
-        getFundraiser(fundraiserId)
-        .then((fundraiser) => {
-            setFundraiser(fundraiser);
+    const refetch = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const data = await getFundraiser(fundraiserId);
+            setFundraiser(data);
+            setError(null);
+        } catch (err) {
+            setError(err);
+        }finally {
             setIsLoading(false);
-        })
-        .catch((error) => {
-            setError(error);
-            setIsLoading(false);
-        });
+        }
     }, [fundraiserId]);
 
-    return { fundraiser, isLoading, error };
+    useEffect(() => {
+       refetch();
+    }, [refetch]);
+
+    return { fundraiser, isLoading, error, refetch };
 }

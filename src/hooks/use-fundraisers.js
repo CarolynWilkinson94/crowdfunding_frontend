@@ -7,15 +7,26 @@ export default function useFundraisers () {
     const [error, setError] = useState();
 
     useEffect(() => {
+        console.log('Starting fundraisers fetch');
+        let mounted = true;
+
         getFundraisers()
-        .then((fundraisers) => {
-            setFundraisers(fundraisers);
-            setIsLoading(false);
+        .then((data) => {
+            if(mounted) {
+                setFundraisers(data);
+                setIsLoading(false);
+            }
         })
         .catch((error) => {
-            setError(error);
-            setIsLoading(false);
+            if (mounted) {
+                setError(err);
+                setIsLoading(false);
+            }
         });
+
+        return () => {
+            mounted = FinalizationRegistry;
+        };
     }, []);
 
     return {fundraisers, isLoading, error};

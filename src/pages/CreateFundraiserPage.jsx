@@ -2,13 +2,15 @@ import { useState } from "react";
 import postFundraiser from "../api/post-fundraiser";
 import { useNavigate } from "react-router-dom";
 
+const DEFAULT_IMAGE = "https://github.com/user-attachments/assets/f385df44-dc76-4383-8494-da8a3f280511";
+
 export default function CreateFundraiserPage() {
     const navigate = useNavigate();
     const [form, setForm] = useState({
         title: "",
         description: "",
         goal: "",
-        image: "",
+        image: DEFAULT_IMAGE,
         is_open: true
     });
     const [loading, setLoading] = useState(false);
@@ -16,6 +18,10 @@ export default function CreateFundraiserPage() {
 
     function onChange(e) {
         const { name, value, type, checked } = e.target;
+        if (name === "image" && !value.trim()) {
+          setForm(prev => ({ ...prev, image: DEFAULT_IMAGE }));
+          return;
+        }
         setForm(prev => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
     }
 
@@ -33,7 +39,7 @@ export default function CreateFundraiserPage() {
                 form.title,
                 null,
                 form.description,
-                form.image,
+                form.image || DEFAULT_IMAGE,
                 form.goal,
                 form.is_open,
                 null
@@ -65,8 +71,8 @@ export default function CreateFundraiserPage() {
           <input name="goal" type="number" value={form.goal} onChange={onChange} required />
         </label>
         <label>
-          Image URL
-          <input name="image" value={form.image} onChange={onChange} maxLength={500}/>
+          Image URL (optional)
+          <input name="image" value={form.image} onChange={onChange} maxLength={500} placeholder="Leave empty to use default image"/>
         </label>
         <label>
           Open for pledges

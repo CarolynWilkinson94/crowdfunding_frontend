@@ -1,6 +1,6 @@
 async function postLogin(username, password) {
-    const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
-    const response = await fetch(url, {
+    const tokenUrl = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
+    const tokenResponse = await fetch(tokenUrl, {
         method: "POST", 
         headers: {
             "Content-Type": "application/json",
@@ -11,18 +11,22 @@ async function postLogin(username, password) {
         }),
     });
 
-    if (!response.ok) {
+    if (!tokenResponse.ok) {
         const fallbackError = `Error trying to login`;
-
-        const data = await response.json().catch(() => {
+        const data = await tokenResponse.json().catch(() => {
             throw new Error(fallbackError);
         });
 
         const errorMessage = data?.detail ?? fallbackError;
         throw new Error(errorMessage);
     }
+    
+    const tokenData = await tokenResponse.json();
 
-    return await response.json();
+    return {
+        token: tokenData.token,
+        userId: tokenData.user_id
+    };
 }
 
 export default postLogin;

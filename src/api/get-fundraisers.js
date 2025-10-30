@@ -1,5 +1,5 @@
 async function getFundraisers() {
-    const url = `${import.meta.env.VITE_API_URL}/fundraisers`;
+    const url = `${import.meta.env.VITE_API_URL}/fundraisers/`;
 
     const response = await fetch(url, { method: "GET" });
 

@@ -5,7 +5,7 @@ async function postFundraiser(title, owner, description, image, goal, is_open, d
     const response = await fetch(url, {
         method: "POST",
         headers: {
-            "Content-type": "application/json",
+            "Content-Type": "application/json",
             ...(token ? { Authorization: `Token ${token}` } : {})
 
         },

@@ -6,10 +6,12 @@ import { useAuth } from "../hooks/use-auth.js";
 function LoginForm() {
     const navigate = useNavigate();
     const {auth, setAuth} = useAuth();
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const [credentials, setCredentials] = useState({
         username: "",
-        passowrd: "",
+        password: "",
     });
 
     const handleChange = (event) => {
@@ -20,24 +22,36 @@ function LoginForm() {
         }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (credentials.username && credentials.password) {
-            postLogin(
-                credentials.username,
-                credentials.password
-            ).then((response) => {
-                window.localStorage.setItem("token", response.token);
+            setError("");
+            setLoading(true);
+            try {
+                const response = await postLogin(
+                    credentials.username,
+                    credentials.password
+                );
+
                 setAuth({
                     token: response.token,
+                    userId:response.userId
                 });
+
                 navigate('/');
-            });
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+          
         }
     };
+    
 
-    return (
-        <form> 
+   return (
+        <form>
+            {error && <div style={{ color: "red" }}>{error}</div>}
             <div>
                 <label htmlFor="username">Username:</label>
                 <input 
@@ -45,7 +59,8 @@ function LoginForm() {
                     id="username" 
                     placeholder="Enter username"
                     onChange={handleChange}
-                    />
+                    disabled={loading}
+                />
             </div>
             <div>
                 <label htmlFor="password">Password: </label>
@@ -53,12 +68,17 @@ function LoginForm() {
                     type="password" 
                     id="password" 
                     placeholder="Password"
-                    onChange={handleChange} 
-                    />
+                    onChange={handleChange}
+                    disabled={loading}
+                />
             </div>
-            <button type="submit" onClick={handleSubmit}>Login</button>
+            <button type="submit" onClick={handleSubmit} disabled={loading}>
+                {loading ? "Logging in..." : "Login"}
+            </button>
             <p>Don't have an account? Sign up here.</p>
-            <button type="button" onClick={() => navigate("/signup")}>Sign Up</button>
+            <button type="button" onClick={() => navigate("/signup")} disabled={loading}>
+                Sign Up
+            </button>
         </form>
     );
 }
