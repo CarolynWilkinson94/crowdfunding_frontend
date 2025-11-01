@@ -1,18 +1,34 @@
-
 .main {
-  
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
 }
-
 
 #fundraiser-list {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  column-gap: 3%;
-  row-gap: 3%;
-  margin: 5% 4%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2rem auto;
+  width: 100%;
 }
-
 
 h1, p {
   text-align: center;
+}
+
+/* Tablet and smaller */
+@media screen and (max-width: 768px) {
+  #fundraiser-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  #fundraiser-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }

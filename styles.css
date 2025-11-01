@@ -46,3 +46,120 @@ p {
 }
 
 
+/* * Tablet Styles (768px and below) */ */
+@media screen and (max-width: 768px) {
+    html, body {
+        font-size: 14px;  /* Slightly smaller base font size */
+    }
+
+    h1 {
+        font-size: 4.5rem;  /* Smaller heading for tablets */
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+
+    #fundraiser-list {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile Styles (480px and below) */
+@media screen and (max-width: 480px) {
+    html, body {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 3.5rem;  /* Even smaller heading for mobile */
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+     #fundraiser-list {
+        grid-template-columns: 100%;  /* Single column */
+        column-gap: 0;
+        row-gap: 20px;
+        margin: 5% 2%;
+    }
+}
+
+/* Small Mobile Devices (320px and below) */
+@media screen and (max-width: 320px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+     #fundraiser-list {
+        grid-template-columns: 100%;  /* Single column */
+        column-gap: 0;
+        row-gap: 20px;
+        margin: 5% 2%;
+    }
+}
+
+/* For larger screens (1200px and above) */
+@media screen and (min-width: 1200px) {
+    main {
+        max-width: 1400px;  /* Limit maximum width on large screens */
+    }
+}
+
+/* Handle very large screens (1600px and above) */
+@media screen and (min-width: 1600px) {
+    main {
+        max-width: 1600px;
+    }
+}
+
+/* Fix for landscape mobile devices */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    main {
+        min-height: auto;  /* Prevent awkward spacing on landscape */
+    }
+}
+
