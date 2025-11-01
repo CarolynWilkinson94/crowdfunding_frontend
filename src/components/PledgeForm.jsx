@@ -73,14 +73,14 @@ export default function PledgeForm({ fundraiserId, remainingHours, onPledgeCreat
           required
         />
       </label>
-      <small>Remaining: {remainingHours} hours</small>
+      <label>Remaining: {remainingHours} hours</label>
 
       <label>
         Comment (optional)
         <textarea value={comment} onChange={e => setComment(e.target.value)} />
       </label>
 
-      <label>
+      <label className="pledge-checkbox-label">
         <input type="checkbox" checked={anonymous} onChange={e => setAnonymous(e.target.checked)} />
         Pledge anonymously
       </label>

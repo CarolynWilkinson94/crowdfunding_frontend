@@ -16,11 +16,15 @@ function HomePage() {
     }
 
     return (
-        <div id="fundraiser-list">
-            {fundraisers?.map((fundraiserData, key) => {
-                return <FundraiserCard key={fundraiserData.id || key} fundraiserData={fundraiserData} />;
+        <div className="main">
+            <h1>Tunes for Change</h1>
+            <p>Welcome to Tunes for Change! Explore fundraisers below or head to the about page to learn more.</p>
+            <div id="fundraiser-list">
+                {fundraisers?.map((fundraiserData, key) => {
+                    return <FundraiserCard key={fundraiserData.id || key} fundraiserData={fundraiserData} />;
 
-            })}
+                })}
+            </div>
         </div>
     );
 

@@ -19,13 +19,13 @@ export default function useFundraisers () {
         })
         .catch((error) => {
             if (mounted) {
-                setError(err);
+                setError(error);
                 setIsLoading(false);
             }
         });
 
         return () => {
-            mounted = FinalizationRegistry;
+            mounted = false;
         };
     }, []);
 
