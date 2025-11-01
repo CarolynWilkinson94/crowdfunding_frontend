@@ -39,6 +39,12 @@
     margin-bottom: 1rem;
 }
 
+.fundraiser-description {
+    margin: 1rem 0;
+    line-height: 1.5;
+    white-space: pre-wrap;  /* This preserves line breaks in the description */
+}
+
 .edit-button {
     background-color: #758e4f;
     color: white;

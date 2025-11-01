@@ -90,7 +90,8 @@ console.log("Equality check:", {
                 </div>
                 <div className="fundraiser-content">
                     <p>Created at: {fundraiser.date_created}</p>
-                    <p>{`Status: ${fundraiser.is_open}`}</p>
+                    <p> Status: {fundraiser.is_open ? "Fundraiser is open" : "Fundraiser is closed"}</p>
+                    <p className="fundraiser-description">Description: {fundraiser.description}</p>
 
                     {isEditing ? (
                         <EditFundraiserForm
