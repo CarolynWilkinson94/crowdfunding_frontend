@@ -1,32 +1,256 @@
 nav {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    background-color: #33658A;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    background: #33658a !important;
+    position: relative;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    height: 50px;
-    padding: 0 16px;
-    margin: 0 0 20px 0;
+    gap: var(--space-8);
+    height: 140px !important;
+    padding: 0 0 0 var(--space-6);
+    margin: 0 0 var(--space-8) 0;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
 
+.nav-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
 
-  
+/* Animated background pattern */
+nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(107, 142, 35, 0.1) 0%, transparent 50%);
+    z-index: -1;
+}
 
+@keyframes backgroundShift {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-10px) rotate(0.5deg); }
+    50% { transform: translateX(5px) rotate(-0.3deg); }
+    75% { transform: translateX(-5px) rotate(0.2deg); }
 }
 
 .nav-logo {
     display: flex;
+    align-items: center;
     justify-content: center;
+    padding: var(--space-3);
 }
 
-nav a {
-    color:white;
+.logo-link {
     text-decoration: none;
-
+    color: inherit;
+    display: flex;
+    align-items: center;
+    padding: var(--space-2);
 }
 
-nav a:hover {
-    color: darkolivegreen;
+.logo-image {
+    height: 150px;
+    width: auto;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    position: absolute;
+    right: 20px !important;
+}
+
+nav a:not(.logo-link) {
+    color: var(--white);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav a:not(.logo-link)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+nav a:not(.logo-link):hover::before {
+    left: 100%;
+}
+
+nav a:not(.logo-link):hover {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-green-light);
+}
+
+nav a:not(.logo-link):active {
+    transform: translateY(-1px);
+}
+
+/* Remove pseudo-icons */
+
+/* Active link styling */
+nav a.active {
+    background-color: var(--accent-green-dark);
+    font-weight: 600;
+}
+
+/* Hamburger Menu Button */
+.hamburger-button {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger-button span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.close-button {
+    display: none;
+}
+
+.overlay {
+    display: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    nav {
+        height: 150px !important;
+        padding: 0 var(--space-4);
+    }
+
+    .nav-content {
+        position: relative;
+    }
+    
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--white);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .close-button {
+        display: block;
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+        background: transparent;
+        border: none;
+        color: var(--white);
+        font-size: 2.5rem;
+        font-weight: 300;
+        cursor: pointer;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 1;
+        z-index: 1001;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -300px !important;
+        height: 100vh;
+        width: 280px;
+        background: #33658a;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-8) var(--space-6);
+        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 1001;
+    }
+    
+    .nav-links-open {
+        right: 0 !important;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        padding: var(--space-4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--white);
+        background: transparent;
+        transition: none;
+        transform: none;
+    }
+    
+    .nav-links a:hover {
+        background: transparent;
+        color: var(--white);
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .nav-links a:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+import "./styles/global.css";
 
 import HomePage from "./pages/HomePage.jsx";
 import FundraiserPage from "./pages/FundraiserPage.jsx";
