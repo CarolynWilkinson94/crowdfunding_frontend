@@ -1,6 +1,7 @@
 import { useState } from "react";
 import postUser from "../api/post-user";
 import { useNavigate } from "react-router-dom";
+import "./SignUpPage.css";
 
 function SignUpPage() {
     const navigate = useNavigate();
@@ -53,51 +54,42 @@ function SignUpPage() {
     }
 
     return(
-        <div>
-            <h1>Create an Account</h1>
+        <div className="signup-page-container">
+            <div className="signup-header">
+                <h1 className="signup-title">Create an Account</h1>
+                <p className="signup-subtitle">Join our community today</p>
+            </div>
 
-            <form id="signup-form" onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input id="username" name="username" type="text" required value={form.username} onChange={onChange}/>
-                </div>
-{/* 
-                <div>
-                    <label htmlFor="firstName">First Name</label>
-                    <input id="firstName" name="firstName" type="text" required value={form.firstName} onChange={onChange}/>
+            <form className="signup-form" id="signup-form" onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label className="form-label" htmlFor="username">Username <span className="required">*</span></label>
+                    <input className="form-input" id="username" name="username" type="text" required value={form.username} onChange={onChange}/>
                 </div>
 
-                <div>
-                    <label htmlFor="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" type="text" required value={form.lastName} onChange={onChange} />
-                </div> */}
-
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" required value={form.email} onChange={onChange}/>
+                <div className="form-group">
+                    <label className="form-label" htmlFor="email">Email <span className="required">*</span></label>
+                    <input className="form-input" id="email" name="email" type="email" required value={form.email} onChange={onChange}/>
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input id="password" name="password" type="password" required minLength="8" value={form.password} onChange={onChange}/>
+                <div className="form-group">
+                    <label className="form-label" htmlFor="password">Password <span className="required">*</span></label>
+                    <input className="form-input" id="password" name="password" type="password" required minLength="8" value={form.password} onChange={onChange}/>
                 </div>
-
-                {/* <div>
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input id="confirmPassword" name="confirmPassword" type="password" required minLength="8" value={form.confirmPassword} onChange={onChange}/>
-
-                </div> */}
 
                 {error && (
-                    <div id="signup-error" role="alert" aria-live="polite" style={{ color: "crimson" }}>
+                    <div className="error-message" id="signup-error" role="alert" aria-live="polite">
                         {String(error)}
                     </div>
                 )}
 
-                <div>
-                    <button type="submit">Create account</button>
-                </div>
+                <button className="signup-button" type="submit" disabled={loading}>
+                    {loading ? "Creating account..." : "Create account"}
+                </button>
             </form>
+
+            <div className="signup-footer">
+                <p>Already have an account? <a href="/login">Sign in</a></p>
+            </div>
         </div>
     )
    
